@@ -10,13 +10,13 @@ import com.edu.uce.pw.api.repository.modelo.Estudiante;
 public interface IEstudianteRepository {
 
 	
-	public Estudiante seleccionar(Integer id);
+	 Estudiante seleccionar(Integer id);
 	
-	public void actualizar(Estudiante estudiante);
+	 void actualizar(Estudiante estudiante);
 	
-	public void eliminar(Integer id);
+	 void eliminar(Integer id);
 	
-	public void insertar(Estudiante estudiante);
+	 void insertar(Estudiante estudiante);
 	
 	
 }
