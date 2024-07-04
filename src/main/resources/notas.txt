@@ -1,0 +1,40 @@
+	Clase 03/07/2024
+    	//2 Maneje codigos de estados estandarizados para las respuestas http
+//2.1 Uso correcto de los metodos o verbos http
+//2.2 Codigos de estado
+//2.3  Maneje correctamente tipos de contenido
+//3( HATEOAS (Hypermedia As The Engine Of Application State)) Api debe manejar hipervinculos
+
+Nivel 1:
+Esto es el path{
+Donde va el protocolo ip puerto se mantiene(https://localhost:8080/)
+Nombre o informacion de la API (API/v1/Matricula)
+El nombre Matricula debe estar declarado en singular y sin el cion como si fuera accion
+Debe ser un dominio
+
+Nombre del servicio del API debe ser un solo nombre en prural
+(/estudiantes)
+tambien se puede(/estudiantes/{id})
+}
+
+Declaracion adecuada del path + el verbo  -> es un END POINT
+
+/estudiantes/{id} + GET
+
+/estudiantes + GET
+
+/estudiantes + Post
+viene acompañado con su body
+
+/estudiantes/{id} + Put
+viene acompañado con su body
+
+/estudiantes/{id} + Patch
+ viene con su body
+
+ /estudiantes  + Delete (Borra todos los estudiantes)
+ /estudiantes/{id} + Delete (Borra un estudiante en especifico )
+
+ !!Nunca podemos declarar end points iguales, esto nos da error !!
+ !!Aveces puede haber casos especiales
+ Nunca en un path deberia ir la accion que hace esa capacidad
