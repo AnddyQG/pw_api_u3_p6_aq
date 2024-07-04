@@ -25,7 +25,7 @@ public class MateriaController {
     @Autowired
     private IMateriaService materiaService;
 	// http://localhost:8080/API/v1.0/Matricula/materias/guardar
-    @PostMapping(path = "/guardar")
+    @PostMapping
     public void guardar(@RequestBody Materia mat){
         this.materiaService.guardar(mat);
 
