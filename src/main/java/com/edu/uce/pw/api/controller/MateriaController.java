@@ -25,15 +25,26 @@ public class MateriaController {
     @Autowired
     private IMateriaService materiaService;
 	// http://localhost:8080/API/v1.0/Matricula/materias/guardar
+    	// Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias
     @PostMapping
     public void guardar(@RequestBody Materia mat){
         this.materiaService.guardar(mat);
 
     }
-	// http://localhost:8080/API/v1.0/Matricula/materias/actualizarParcial
-@PatchMapping(path = "/actualizarParcial")
-    public void actualizarParcial(@RequestBody Materia mat){
 
+    	// http://localhost:8080/API/v1.0/Matricula/materias/actualizar
+        // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
+        @PutMapping(path = "/{id}")
+        public void actualizar(@RequestBody Materia mat, @PathVariable Integer id){
+            mat.setId(id);
+            this.materiaService.actualizar(mat);
+        }
+
+	// http://localhost:8080/API/v1.0/Matricula/materias/actualizarParcial
+     // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
+@PatchMapping(path = "/{id}")
+    public void actualizarParcial(@RequestBody Materia mat,@PathVariable Integer id){
+mat.setId(id);
         Materia mat2 =this.materiaService.buscar(mat.getId());
         if(mat.getNombre()!=null){
             mat2.setNombre(mat.getNombre());
@@ -45,31 +56,33 @@ public class MateriaController {
     
 
     }
-	// http://localhost:8080/API/v1.0/Matricula/materias/actualizar
-    @PutMapping(path = "/actualizar")
-    public void actualizar(@RequestBody Materia mat){
-        this.materiaService.actualizar(mat);
-    }
+
 	// http://localhost:8080/API/v1.0/Matricula/materias/borrar/2
-    @DeleteMapping(path = "/borrar/{id}")
+     // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
+    @DeleteMapping(path = "/{id}")
     public void borar(@PathVariable Integer id){
         this.materiaService.borrar(id);
     }
 
     	// http://localhost:8080/API/v1.0/Matricula/materias/buscar/3/nuevo
-    @GetMapping(path = "/buscar/{id}/nuevo")
+         // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
+    @GetMapping(path = "/{id}")
     public Materia buscar(@PathVariable Integer id){
-        return this.materiaService.buscar(1);
+        return this.materiaService.buscar(id);
     }
 
 
     	// http://localhost:8080/API/v1.0/Matricula/materias/buscarPorGenero
-    @GetMapping(path = "/buscarPorNombre")
+         // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/nombre?nombre=Analisis 1 
+    @GetMapping(path = "/nombre")
     public List<Materia> buscarPorNombre(@RequestParam String nombre){
         
 List<Materia> ms = this.materiaService.buscarPorNombre(nombre);
         return ms;
 
     }
+
+
+ 
 
 }

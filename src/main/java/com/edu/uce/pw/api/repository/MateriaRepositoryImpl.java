@@ -47,7 +47,7 @@ public class MateriaRepositoryImpl implements IMateriaRepository{
     @Override
     public List<Materia> seleccionarPorNombre(String nombre) {
    
-        String jpql = "SELECT e FROM Estudiante e WHERE e.nombre=:nombre";
+        String jpql = "SELECT e FROM Materia e WHERE e.nombre=:nombre";
         TypedQuery<Materia> query = this.entityManager.createQuery(jpql,Materia.class);
         query.setParameter("nombre", nombre);
         return query.getResultList();
