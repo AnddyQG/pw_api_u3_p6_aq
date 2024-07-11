@@ -76,15 +76,21 @@ public class EstudianteController {
 // Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes/1
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<String> borrar(@PathVariable Integer id) {
+
+		
+		HttpHeaders cabeceras = new HttpHeaders();
+		cabeceras.add("Mensaje_240", "Estudiante eliminado");
+		cabeceras.add("valor", "Estudiante eliminado");
 		this.estudianteService.borrar(id);
-		return ResponseEntity.status(240).body("Estudiante eliminado");
+		return new ResponseEntity<>(null,cabeceras,240);
+
 	}
 	//Get
 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/buscar/1/nuevo/prueba
 	// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes/1
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Estudiante> buscar(@PathVariable Integer id ) {
-		this.estudianteService.buscar(id);
+		
 
 		HttpHeaders cabeceras = new HttpHeaders();
 		cabeceras.add("Mensaje_236", "Corresponde a la consulta de un recurso");
@@ -99,10 +105,13 @@ public class EstudianteController {
 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/buscarPorGenero?genero=M&edad=35
 	// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes/genero
 	@GetMapping(path = "/genero")
-	 public List<Estudiante> buscarPorGenero(@RequestParam String genero) {
+	 public ResponseEntity<List<Estudiante>> buscarPorGenero(@RequestParam String genero) {
 		
 		List<Estudiante> ls= this.estudianteService.buscarPorGenero(genero);
-		return ls;
+		HttpHeaders cabeceras = new HttpHeaders();
+		cabeceras.add("Mensaje_237", "Corresponde a la consulta de recursos por género");
+		cabeceras.add("valor", "Estudiantes Encontrados");
+		return new ResponseEntity<>(ls,cabeceras,237);
 
 	 }
 
@@ -110,10 +119,17 @@ public class EstudianteController {
 	 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/buscarMixto/1?prueba=HolaMundo
 		// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes/mixto/1
 	@GetMapping(path = "/mixto/{id}")
-	public Estudiante buscarMixto(@PathVariable Integer id, @RequestParam String prueba) {
+	public ResponseEntity<Estudiante> buscarMixto(@PathVariable Integer id, @RequestParam String prueba) {
 		//System.out.println("Dat : " + id);
 		//System.out.println("Dato : " + prueba );
-		return this.estudianteService.buscar(id);
+	
+
+		HttpHeaders cabeceras = new HttpHeaders();
+		cabeceras.add("Mensaje_236", "Corresponde a la consulta de un recurso");
+		cabeceras.add("valor", "Estudiante Encontrado");
+		return  new ResponseEntity<>(this.estudianteService.buscar(id),cabeceras,236);
+
+
 	}
 
 
