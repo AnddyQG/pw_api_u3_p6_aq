@@ -29,16 +29,17 @@ public class MateriaController {
     private IMateriaService materiaService;
 	// http://localhost:8080/API/v1.0/Matricula/materias/guardar
     	// Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Materia> guardar(@RequestBody Materia mat){
         this.materiaService.guardar(mat);
         return ResponseEntity.status(201).body(mat);
+
 
     }
 
     	// http://localhost:8080/API/v1.0/Matricula/materias/actualizar
         // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
-        @PutMapping(path = "/{id}")
+        @PutMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes  = MediaType.APPLICATION_XML_VALUE)
         public ResponseEntity<Materia> actualizar(@RequestBody Materia mat, @PathVariable Integer id){
             mat.setId(id);
             this.materiaService.actualizar(mat);
@@ -47,7 +48,7 @@ public class MateriaController {
 
 	// http://localhost:8080/API/v1.0/Matricula/materias/actualizarParcial
      // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
-    @PatchMapping(path = "/{id}")
+    @PatchMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Materia> actualizarParcial(@RequestBody Materia mat,@PathVariable Integer id){
         mat.setId(id);
         Materia mat2 =this.materiaService.buscar(mat.getId());
@@ -86,7 +87,7 @@ return new ResponseEntity<>(null,cabeceras,240);
 
     	// http://localhost:8080/API/v1.0/Matricula/materias/buscar/3/nuevo
          // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_XHTML_XML_VALUE)
     public ResponseEntity<Materia> buscar(@PathVariable Integer id){
         HttpHeaders cabeceras = new HttpHeaders();
         cabeceras.add("Mensaje_236", "Materia encontrado");
