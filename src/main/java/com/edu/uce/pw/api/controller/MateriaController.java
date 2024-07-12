@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +47,9 @@ public class MateriaController {
 
 	// http://localhost:8080/API/v1.0/Matricula/materias/actualizarParcial
      // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
-@PatchMapping(path = "/{id}")
+    @PatchMapping(path = "/{id}")
     public ResponseEntity<Materia> actualizarParcial(@RequestBody Materia mat,@PathVariable Integer id){
-mat.setId(id);
+        mat.setId(id);
         Materia mat2 =this.materiaService.buscar(mat.getId());
         if(mat.getNombre()!=null){
             mat2.setNombre(mat.getNombre());
@@ -58,11 +59,12 @@ mat.setId(id);
         }
         this.materiaService.actualizar(mat2);
     
-return ResponseEntity.status(239).body(mat2);
+    return ResponseEntity.status(239).body(mat2);
     }
 
 	// http://localhost:8080/API/v1.0/Matricula/materias/borrar/2
      // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
+     /* 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> borar(@PathVariable Integer id){
         this.materiaService.borrar(id);
@@ -73,6 +75,14 @@ this.materiaService.borrar(id);
 return new ResponseEntity<>(null,cabeceras,240);
 
     }
+*/
+@DeleteMapping(path = "/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> borrar(@PathVariable Integer id) {
+		System.out.println("Borrar materia");
+        this.materiaService.borrar(id);
+        return ResponseEntity.status(240).body("Materia eliminado");
+    }
+
 
     	// http://localhost:8080/API/v1.0/Matricula/materias/buscar/3/nuevo
          // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/1
