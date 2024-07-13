@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.edu.uce.pw.api.repository.IEstudianteRepository;
 import com.edu.uce.pw.api.repository.modelo.Estudiante;
+import com.edu.uce.pw.api.service.TO.EstudianteTO;
 
 @Service
 
@@ -44,6 +45,20 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	public List<Estudiante> buscarPorGenero(String genero) {
 	
 		return this.estudianteRepository.seleccionarPorGenero(genero);
+	}
+    public EstudianteTO convertir(Estudiante e) {
+        EstudianteTO estudianteTO = new EstudianteTO();
+        estudianteTO.setId(e.getId());
+        estudianteTO.setNombre(e.getNombre());
+        estudianteTO.setApellido(e.getApellido());
+        estudianteTO.setFechaNacimiento(e.getFechaNacimiento());
+        estudianteTO.setGenero(e.getGenero());
+        return estudianteTO;
+    }
+	@Override
+	public EstudianteTO buscarPorGenero(Integer id) {
+		Estudiante e = this.estudianteRepository.seleccionar(id);
+        return this.convertir(e);
 	}
 
 }

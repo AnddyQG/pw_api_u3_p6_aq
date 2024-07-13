@@ -3,6 +3,7 @@ package com.edu.uce.pw.api.service;
 import java.util.List;
 
 import com.edu.uce.pw.api.repository.modelo.Materia;
+import com.edu.uce.pw.api.service.TO.MateriaTO;
 
 public interface IMateriaService {
     
@@ -16,5 +17,6 @@ public interface IMateriaService {
 
 	 List<Materia> buscarPorNombre(String nombre);
 
+	 List<MateriaTO> buscarPorIdEstudiante(Integer id);
 
 }
