@@ -15,8 +15,8 @@ public interface IMateriaService {
 	
 	 void guardar(Materia materia);
 
-	 List<Materia> buscarPorNombre(String nombre);
+	
 
-	 List<MateriaTO> buscarPorIdEstudiante(Integer id);
+	 List<MateriaTO> buscarPorIdEstudiante(Integer idEstu);
 
 }

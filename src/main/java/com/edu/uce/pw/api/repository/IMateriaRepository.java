@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.edu.uce.pw.api.repository.modelo.Materia;
+import com.edu.uce.pw.api.service.TO.MateriaTO;
 
 public interface IMateriaRepository {
     
@@ -17,6 +18,8 @@ public interface IMateriaRepository {
 	 void insertar(Materia materia);
 
 	 List<Materia> seleccionarPorNombre(String nombre);
-     List<Materia> seleccionarPorIdEstudiante(Integer id);
 
+	 public List<Materia> seleccionarPorIdEstudiante(Integer idEstudiante);
+
+  
 }

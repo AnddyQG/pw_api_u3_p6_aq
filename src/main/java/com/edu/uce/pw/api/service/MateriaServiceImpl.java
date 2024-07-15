@@ -44,36 +44,29 @@ public class MateriaServiceImpl implements IMateriaService{
     
     }
 
-     private MateriaTO convertir(Materia materia) {
+
+
+    private MateriaTO convertir(Materia materia) {
         MateriaTO materiaTO = new MateriaTO();
-      
         materiaTO.setId(materia.getId());
         materiaTO.setNombre(materia.getNombre());
         materiaTO.setCreditos(materia.getCreditos());
         return materiaTO;
     }
- 
+
     @Override
-    public List<MateriaTO> buscarPorIdEstudiante(Integer idEstudiante) {
- 
-        List<Materia> lista = this.materiaRepository.seleccionarPorIdEstudiante(idEstudiante);
+    public List<MateriaTO> buscarPorIdEstudiante(Integer idEstu) {
+
+        List<Materia> lista = this.materiaRepository.seleccionarPorIdEstudiante(idEstu);
         List<MateriaTO> listaFinal = new ArrayList<>();
- 
+
         for (Materia materia : lista) {
             listaFinal.add(this.convertir(materia));
         }
- 
+
         return listaFinal;
     }
 
-    @Override
-    public List<Materia> buscarPorNombre(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorNombre'");
-    }
-
-
   
-
 
 }

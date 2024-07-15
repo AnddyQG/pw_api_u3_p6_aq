@@ -33,6 +33,7 @@ public class EstudianteController {
 
 	@Autowired
 	private IEstudianteService estudianteService;
+	@Autowired
 	private IMateriaService iMateriaService;
 	
 	//Post
@@ -163,14 +164,13 @@ public class EstudianteController {
 		}
 
 
-		  @GetMapping(path = "/hateoas/{id}")
-    public EstudianteTO buscarHateoas(@PathVariable Integer id) {
-        EstudianteTO e = this.estudianteService.buscarPorGenero(id);
-        List<MateriaTO> materias = this.iMateriaService.buscarPorIdEstudiante(id);
-	
-        e.setMaterias(materias);
-       
-        return e;
-    }
+	// http://localhost:8080/API/v1.0/Matricula/estudiantes/hateoas/1
+	@GetMapping(path = "/hateoas/{id}")
+	public EstudianteTO buscarHateoas(@PathVariable("id") Integer id) {
+		EstudianteTO estudianteTO = this.estudianteService.buscarPorId(id);
+		List<MateriaTO> ls = this.iMateriaService.buscarPorIdEstudiante(id);
+		estudianteTO.setMaterias(ls); 
+		return estudianteTO;
+	}
 
 }

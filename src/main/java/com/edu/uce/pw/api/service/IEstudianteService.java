@@ -18,7 +18,7 @@ public interface IEstudianteService {
 
 	List<Estudiante> buscarPorGenero(String genero);
 
-public EstudianteTO buscarPorGenero(Integer id);
+public EstudianteTO buscarPorId(Integer id);
 
 	
 }

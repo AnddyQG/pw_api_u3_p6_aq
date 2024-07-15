@@ -5,13 +5,14 @@ import java.util.List;
  
 public class EstudianteTO {
  
-
+    private static final long serialVersionUID = 7085562941894409720L;
  
     private Integer id;
     private String nombre;
     private String apellido;
-    private LocalDateTime fechaNacimiento;
+
     private String genero;
+    private List<MateriaTO> materias;
  
  
     public Integer getId() {
@@ -32,22 +33,23 @@ public class EstudianteTO {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public LocalDateTime getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
+   
     public String getGenero() {
         return genero;
     }
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    public void setMaterias(List<MateriaTO> materias) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMaterias'");
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
+    public List<MateriaTO> getMaterias() {
+        return materias;
+    }
+    public void setMaterias(List<MateriaTO> materias) {
+        this.materias = materias;
+    }
+
  
    
    

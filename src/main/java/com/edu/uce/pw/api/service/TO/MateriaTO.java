@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 public class MateriaTO implements Serializable{
+    private static final long serialVersionUID = 1683355650124783603L;
     
     private Integer id;
 

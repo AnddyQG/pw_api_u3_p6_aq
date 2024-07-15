@@ -97,20 +97,7 @@ return new ResponseEntity<>(null,cabeceras,240);
     }
 
 
-    	// http://localhost:8080/API/v1.0/Matricula/materias/buscarPorGenero
-         // Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias/nombre?nombre=Analisis 1 
-    @GetMapping(path = "/nombre")
-    public ResponseEntity<List<Materia>> buscarPorNombre(@RequestParam String nombre){
-        
-List<Materia> ms = this.materiaService.buscarPorNombre(nombre);
-HttpHeaders cabeceras = new HttpHeaders();
-		cabeceras.add("Mensaje_237", "Corresponde a la consulta por nombre");
-		cabeceras.add("valor", "Materia Encontrados");
-		return new ResponseEntity<>(ms,cabeceras,237);
-      
-    }
-
-
+    
  
 
 }
