@@ -22,5 +22,5 @@ public interface IEstudianteRepository {
 
 	 List<Estudiante> seleccionarPorGenero(String genero);
 	
-	
+	List<Estudiante>  selecEstudiantes();
 }

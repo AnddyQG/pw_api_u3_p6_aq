@@ -195,4 +195,16 @@ return this.iMateriaService.buscarPorIdEstudiante(id);
 }
 
 
+// http://localhost:8080/API/v1.0/Matricula/estudiantes/todos
+@GetMapping(path = "/todos",produces = MediaType.APPLICATION_JSON_VALUE)
+public List<EstudianteTO> selecEstudiantes() {
+	List<EstudianteTO> ls = this.estudianteService.selecEstudiantes();
+
+	ls.forEach(x->{
+		Link myLink = linkTo(methodOn(EstudianteController.class).buscarMateriaPorIdEstudiante(x.getId())).withRel("Materias");
+		x.add(myLink);
+	});
+return ls;
+}
+
 }

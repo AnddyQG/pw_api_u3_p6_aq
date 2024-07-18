@@ -1,5 +1,6 @@
 package com.edu.uce.pw.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,18 @@ public class EstudianteServiceImpl implements IEstudianteService{
         Estudiante e = this.estudianteRepository.seleccionar(id);
         return this.convertir(e);
     }
+
+	@Override
+	public List<EstudianteTO> selecEstudiantes() {
+	
+   List<Estudiante> estudiantes = this.estudianteRepository.selecEstudiantes();
+        List<EstudianteTO> estudiantesTO = new ArrayList<>();
+        for (Estudiante e : estudiantes) {
+            estudiantesTO.add(this.convertir(e));
+        }
+        return estudiantesTO; 
+
+	}
+
 
 }
