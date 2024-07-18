@@ -4,6 +4,7 @@ package com.edu.uce.pw.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,8 +24,10 @@ import com.edu.uce.pw.api.service.IEstudianteService;
 import com.edu.uce.pw.api.service.IMateriaService;
 import com.edu.uce.pw.api.service.TO.EstudianteTO;
 import com.edu.uce.pw.api.service.TO.MateriaTO;
-
 import org.springframework.web.bind.annotation.RequestParam;
+//Esto se puede llevar al examen import del link
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(path = "/estudiantes")
@@ -165,12 +168,31 @@ public class EstudianteController {
 
 
 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/hateoas/1
-	@GetMapping(path = "/hateoas/{id}")
+	@GetMapping(path = "/hateoas/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public EstudianteTO buscarHateoas(@PathVariable("id") Integer id) {
 		EstudianteTO estudianteTO = this.estudianteService.buscarPorId(id);
-		List<MateriaTO> ls = this.iMateriaService.buscarPorIdEstudiante(id);
-		estudianteTO.setMaterias(ls); 
+		//ERROR esto es una carga EAGER(Necesiste o no lo trae) 
+		//List<MateriaTO> ls = this.iMateriaService.buscarPorIdEstudiante(id);
+		//estudianteTO.setMaterias(ls); 
+		
+		Link miLink = linkTo(methodOn( EstudianteController.class).buscarMateriaPorIdEstudiante(id)).withRel("SusMaterias");
+		estudianteTO.add(miLink);
+
+		Link miLink2 = linkTo(methodOn(EstudianteController.class).buscar(id)).withSelfRel();
+
+		estudianteTO.add(miLink2);
+
 		return estudianteTO;
 	}
+
+
+//http://localhost:8080/API/v1.0/Matricula/estudiantes/7/materias get
+
+@GetMapping(path = "/{id}/materias",produces = MediaType.APPLICATION_JSON_VALUE)
+public List<MateriaTO> buscarMateriaPorIdEstudiante(@PathVariable Integer id) {
+return this.iMateriaService.buscarPorIdEstudiante(id);
+
+}
+
 
 }

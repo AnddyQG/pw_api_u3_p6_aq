@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.uce.pw.api.repository.modelo.Materia;
 import com.edu.uce.pw.api.service.IMateriaService;
+import com.edu.uce.pw.api.service.TO.MateriaTO;
 
 @RestController
 @RequestMapping(path="/materias")
@@ -27,6 +28,10 @@ public class MateriaController {
 
     @Autowired
     private IMateriaService materiaService;
+
+    @Autowired
+	private IMateriaService iMateriaService;
+
 	// http://localhost:8080/API/v1.0/Matricula/materias/guardar
     	// Nivel 1 http://localhost:8080/API/v1.0/Matricula/materias
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_XML_VALUE)
@@ -98,6 +103,12 @@ return new ResponseEntity<>(null,cabeceras,240);
 
 
     
- 
+ //http://localhost:8080/API/v1.0/Matricula/estudiantes/7/materias get
+
+@GetMapping(path = "/{id}/materias",produces = MediaType.APPLICATION_JSON_VALUE)
+public List<MateriaTO> buscarMateriaPorIdEstudiante(@PathVariable Integer id) {
+return this.iMateriaService.buscarPorIdEstudiante(id);
+
+}
 
 }

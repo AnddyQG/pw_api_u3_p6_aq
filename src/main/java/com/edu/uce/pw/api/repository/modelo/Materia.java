@@ -1,5 +1,7 @@
 package com.edu.uce.pw.api.repository.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materia")
+//esto solo para fue ejemplo por que hicimos directo a la entidad
+@JsonIgnoreProperties(value = "estudiante")
 public class Materia {
 
 

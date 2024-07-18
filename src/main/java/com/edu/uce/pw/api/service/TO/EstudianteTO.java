@@ -1,9 +1,12 @@
 package com.edu.uce.pw.api.service.TO;
 
-import java.time.LocalDateTime;
-import java.util.List;
+
+import java.io.Serializable;
+
+
+import org.springframework.hateoas.RepresentationModel;
  
-public class EstudianteTO {
+public class EstudianteTO extends RepresentationModel<EstudianteTO> implements Serializable{
  
     private static final long serialVersionUID = 7085562941894409720L;
  
@@ -12,7 +15,7 @@ public class EstudianteTO {
     private String apellido;
 
     private String genero;
-    private List<MateriaTO> materias;
+   // private List<MateriaTO> materias;
  
  
     public Integer getId() {
@@ -43,12 +46,14 @@ public class EstudianteTO {
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
+   /* 
     public List<MateriaTO> getMaterias() {
         return materias;
     }
     public void setMaterias(List<MateriaTO> materias) {
         this.materias = materias;
     }
+*/
 
  
    
