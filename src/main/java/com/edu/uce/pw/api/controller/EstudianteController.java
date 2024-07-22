@@ -209,8 +209,9 @@ public List<EstudianteTO> selecEstudiantes() {
 return ls;
 }
 
-	// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/buscarPorCedula?cedula=123456	
-	@GetMapping(path = "/buscarPorCedula/{cedula}", produces = "application/json")
+	// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/buscarPorCedula?cedula=123456
+//Nivel 2 : http://localhost:8082/API/v1.0/Matricula/estudiantes/{cedula}
+	@GetMapping(path = "/{cedula}", produces = "application/json")
 	public EstudianteTO buscarPorCedula(@PathVariable String cedula) {
 		EstudianteTO estudiante = this.estudianteService.buscarPorCedula(cedula);
 		Link myLink = linkTo(methodOn(EstudianteController.class).buscarMateriaPorIdEstudiante(estudiante.getId()))
