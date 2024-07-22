@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,6 +33,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping(path = "/estudiantes")
 //Para pweb solo 5 tipos
+@CrossOrigin(value = "http://localhost:8080")
 public class EstudianteController {
 
 	@Autowired
@@ -206,5 +208,14 @@ public List<EstudianteTO> selecEstudiantes() {
 	});
 return ls;
 }
+
+	// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/buscarPorCedula?cedula=123456	
+	@GetMapping(path = "/buscarPorCedula/{cedula}", produces = "application/json")
+	public EstudianteTO buscarPorCedula(@PathVariable String cedula) {
+		EstudianteTO estudiante = this.estudianteService.buscarPorCedula(cedula);
+		Link myLink = linkTo(methodOn(EstudianteController.class).buscarMateriaPorIdEstudiante(estudiante.getId()))
+				.withRel("susMaterias");
+		return estudiante.add(myLink);
+	}
 
 }

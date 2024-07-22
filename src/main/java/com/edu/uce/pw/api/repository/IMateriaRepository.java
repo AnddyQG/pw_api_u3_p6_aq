@@ -2,7 +2,7 @@ package com.edu.uce.pw.api.repository;
 
 import java.util.List;
 
-
+import com.edu.uce.pw.api.repository.modelo.Estudiante;
 import com.edu.uce.pw.api.repository.modelo.Materia;
 import com.edu.uce.pw.api.service.TO.MateriaTO;
 

@@ -67,6 +67,13 @@ return myQuery.getResultList();
 	}
 
 	
-	
+	@Override
+    public Estudiante buscarPorCedula(String cedula) {
+      
+        TypedQuery<Estudiante> query = this.entityManager.createQuery("SELECT e FROM Estudiante e WHERE e.cedula=: cedula ", Estudiante.class);
+		query.setParameter("cedula", cedula);
+		return query.getSingleResult();  
+   
+    }
 
 }

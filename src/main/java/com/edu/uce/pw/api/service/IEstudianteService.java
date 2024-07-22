@@ -21,4 +21,5 @@ public interface IEstudianteService {
 public EstudianteTO buscarPorId(Integer id);
 
 List<EstudianteTO>  selecEstudiantes();
+public EstudianteTO buscarPorCedula(String cedula);
 }

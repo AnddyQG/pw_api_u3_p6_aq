@@ -23,4 +23,6 @@ public interface IEstudianteRepository {
 	 List<Estudiante> seleccionarPorGenero(String genero);
 	
 	List<Estudiante>  selecEstudiantes();
+
+	Estudiante buscarPorCedula(String cedula);
 }

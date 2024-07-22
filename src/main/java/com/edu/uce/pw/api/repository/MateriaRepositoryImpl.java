@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
+import com.edu.uce.pw.api.repository.modelo.Estudiante;
 import com.edu.uce.pw.api.repository.modelo.Materia;
 @Repository
 @Transactional
@@ -61,6 +62,8 @@ public class MateriaRepositoryImpl implements IMateriaRepository{
         myQuery.setParameter("idEstudiante", idEstudiante);
         return myQuery.getResultList();
     }
+
+
 
     
 }

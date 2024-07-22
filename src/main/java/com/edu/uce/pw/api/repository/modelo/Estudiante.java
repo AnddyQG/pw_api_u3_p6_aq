@@ -40,6 +40,10 @@ public class Estudiante {
 	@Column(name = "estu_genero")
 	private String genero;
 
+	@Column(name = "estu_cedula")
+	private String cedula;
+
+
 
     @OneToMany(mappedBy = "estudiante")
     private List<Materia> materias;
@@ -87,6 +91,12 @@ public class Estudiante {
 	}
 	public void setMaterias(List<Materia> materias) {
 		this.materias = materias;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 	
 	

@@ -1,6 +1,6 @@
 package com.edu.uce.pw.api.service.TO;
 
-
+import java.util.List;
 import java.io.Serializable;
 
 
@@ -15,6 +15,9 @@ public class EstudianteTO extends RepresentationModel<EstudianteTO> implements S
     private String apellido;
 
     private String genero;
+    	private String cedula;
+
+    private List<MateriaTO> materia;
    // private List<MateriaTO> materias;
  
  
@@ -46,14 +49,20 @@ public class EstudianteTO extends RepresentationModel<EstudianteTO> implements S
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-   /* 
-    public List<MateriaTO> getMaterias() {
-        return materias;
+    public String getCedula() {
+        return cedula;
     }
-    public void setMaterias(List<MateriaTO> materias) {
-        this.materias = materias;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
-*/
+    public List<MateriaTO> getMateria() {
+        return materia;
+    }
+    public void setMateria(List<MateriaTO> materia) {
+        this.materia = materia;
+    }
+   
+
 
  
    
