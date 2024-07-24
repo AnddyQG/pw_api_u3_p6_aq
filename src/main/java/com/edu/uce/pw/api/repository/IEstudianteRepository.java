@@ -25,4 +25,8 @@ public interface IEstudianteRepository {
 	List<Estudiante>  selecEstudiantes();
 
 	Estudiante buscarPorCedula(String cedula);
+
+	Estudiante actualizarCedula(String cedula);
+
+	void eliminarCedula(String cedula);
 }

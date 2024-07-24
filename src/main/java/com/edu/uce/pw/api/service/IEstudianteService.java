@@ -22,4 +22,10 @@ public EstudianteTO buscarPorId(Integer id);
 
 List<EstudianteTO>  selecEstudiantes();
 public EstudianteTO buscarPorCedula(String cedula);
+
+
+Estudiante actualizarCedula(String cedula);
+
+void eliminarCedula(String cedula);
+
 }

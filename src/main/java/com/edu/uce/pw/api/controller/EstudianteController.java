@@ -33,7 +33,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping(path = "/estudiantes")
 //Para pweb solo 5 tipos
-@CrossOrigin(value = "http://localhost:8080")
+@CrossOrigin
 public class EstudianteController {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class EstudianteController {
 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/guardar
 	// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes
 	//produce como consume(recibes)
-	@PostMapping(produces = "application/json",consumes = "application/xml")
+	@PostMapping(produces = "application/json",consumes = "application/json")
 	public ResponseEntity<Estudiante> guardar(@RequestBody Estudiante est) {
 		
 		this.estudianteService.guardar(est);
@@ -99,6 +99,7 @@ public class EstudianteController {
 		return new ResponseEntity<>(null,cabeceras,240);
 
 	}*/
+	// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes/1 
     @DeleteMapping(path = "/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> borrar(@PathVariable Integer id) {
 		System.out.println("Borrar estudiante");
@@ -210,7 +211,7 @@ return ls;
 }
 
 	// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/buscarPorCedula?cedula=123456
-//Nivel 2 : http://localhost:8082/API/v1.0/Matricula/estudiantes/{cedula}
+//Nivel 2 : http://localhost:8082/API/v1.0/Matricula/estudiantes/cedula{cedula}
 	@GetMapping(path = "/{cedula}", produces = "application/json")
 	public EstudianteTO buscarPorCedula(@PathVariable String cedula) {
 		EstudianteTO estudiante = this.estudianteService.buscarPorCedula(cedula);
@@ -218,5 +219,26 @@ return ls;
 				.withRel("susMaterias");
 		return estudiante.add(myLink);
 	}
+
+
+		// http://localhost:8080/API/v1.0/Matricula/estudiantes/actualizar
+	// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/cedula/
+	@PutMapping(path = "/cedula/{cedula}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Estudiante> actualizarCedula(@RequestBody Estudiante est,@PathVariable String cedula) {
+		EstudianteTO est2= this.estudianteService.buscarPorCedula(cedula);
+		est.setCedula(cedula);
+		est.setId(est2.getId());
+		 this.estudianteService.actualizarCedula(cedula);
+		return ResponseEntity.status(238).body(est);
+	}
+
+
+		// Nivel 1 : http://localhost:8082/API/v1.0/Matricula/estudiantes/cedula
+		@DeleteMapping(path = "cedula/{cedula}", produces = MediaType.TEXT_PLAIN_VALUE)
+		public ResponseEntity<String> borrarCedula(@PathVariable String cedula) {
+			System.out.println("Borrar estudiante");
+			this.estudianteService.eliminarCedula(cedula); 
+			return ResponseEntity.status(240).body("Estudiante eliminado");
+		}
 
 }

@@ -86,5 +86,21 @@ public class EstudianteServiceImpl implements IEstudianteService{
 		return this.convertir(e);
 	}
 
+	@Override
+	public Estudiante actualizarCedula(String cedula) {
+	
+		return this.estudianteRepository.actualizarCedula(cedula);
+
+		
+	}
+
+	@Override
+	public void eliminarCedula(String cedula) {
+	
+this.estudianteRepository.eliminarCedula(cedula);
+
+
+	}
+
 
 }

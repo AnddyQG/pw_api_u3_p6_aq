@@ -8,6 +8,7 @@ import com.edu.uce.pw.api.repository.modelo.Estudiante;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 @Repository
@@ -75,5 +76,24 @@ return myQuery.getResultList();
 		return query.getSingleResult();  
    
     }
+
+	@Override
+	public Estudiante actualizarCedula(String cedula) {
+
+		TypedQuery<Estudiante> query = this.entityManager.createQuery("SELECT e FROM Estudiante e WHERE e.cedula=: cedula ", Estudiante.class);
+		query.setParameter("cedula", cedula);
+
+	return query.getSingleResult();
+	}
+
+	@Override
+	public void eliminarCedula(String cedula) {
+		String jpql = "DELETE FROM Estudiante e WHERE e.cedula = :cedula";
+		Query query = this.entityManager.createQuery(jpql);
+		query.setParameter("cedula", cedula);
+		query.executeUpdate();
+		
+
+	}
 
 }
